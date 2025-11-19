@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Farmapio — Análise Comercial Outubro 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#f7f7fb;
+      --card:#ffffff;
+      --ink:#1d1b2e;
+      --muted:#6b6b80;
+      --green:#2bd37b;
+      --green-600:#1fb268;
+      --purple:#5b35ea;
+      --purple-700:#4327b8;
+      --teal:#1fc7c1;
+      --shadow: 0 10px 25px rgba(17, 12, 46, .1), inset 0 1px 0 rgba(255,255,255,.5);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif}
+    a{color:var(--purple)}
+    .wrap{max-width:1200px;margin:auto;padding:28px}
+    header.hero{display:grid;gap:14px;margin:6px 0 18px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, rgba(91,53,234,.08), rgba(31,199,193,.08));border-radius:999px;padding:8px 12px;color:var(--purple);font-weight:700;letter-spacing:.2px}
+    .title{font-weight:900;font-size:clamp(22px,3.6vw,36px);line-height:1.05}
+    .subtitle{color:var(--muted)}
+
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-2{grid-template-columns:repeat(2,1fr)}.grid.cols-4{grid-template-columns:repeat(4,1fr)}}
+
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .kpi{display:flex;align-items:center;gap:12px}
+    .kpi .icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg, var(--purple), var(--teal));color:#fff;box-shadow:0 6px 16px rgba(91,53,234,.25)}
+    .kpi .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+    .kpi .value{font-weight:800;font-size:22px}
+
+    .badge{display:inline-flex;align-items:center;gap:10px;border-radius:14px;background:linear-gradient(180deg,#f0edff,#e6fff7);padding:8px 12px;font-weight:700;color:var(--purple)}
+
+    .section-title{font-weight:800;font-size:18px;margin:0 0 8px}
+    .muted{color:var(--muted)}
+
+    /* Pillars */
+    .pillars{display:grid;gap:14px}
+    @media(min-width:900px){.pillars{grid-template-columns:repeat(3,1fr)}}
+    .pillar{position:relative;overflow:hidden;background:linear-gradient(180deg,#ffffff, #f6f4ff);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .pillar h4{margin:6px 0 8px;font-size:16px}
+
+    /* Genéricos hero */
+    .hero-card{background:linear-gradient(135deg, #3b2ab8, #6b45ff);color:#fff}
+    .hero-card .chip{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:6px 10px;border-radius:999px;font-weight:700}
+    .hero-grid{display:grid;gap:12px}
+    @media(min-width:900px){.hero-grid{grid-template-columns:repeat(4,1fr)}}
+    .hero-stat{background:rgba(255,255,255,.08);backdrop-filter: blur(6px);padding:14px;border-radius:14px}
+    .hero-stat .v{font-weight:900;font-size:22px}
+
+    .footer{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);margin:24px 0 10px}
+    .note{font-size:12px}
+
+    /* Chart.js tweaks */
+    canvas{max-width:100%}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="brand">
+        <span class="pill">Farmapio · Dashboard</span>
+      </div>
+      <div class="title">Análise Comercial — Outubro 2025</div>
+      <div class="subtitle">Visão consolidada de faturamento, lucro e impacto das campanhas (Genéricos, Semana da Criança, Outubro Rosa e Operação Fecha Mês).</div>
+    </header>
+
+    <!-- KPI CARDS -->
+    <section class="grid cols-4">
+      <div class="card kpi">
+        <div class="icon" aria-hidden="true">💰</div>
+        <div>
+          <div class="label">Faturamento Total</div>
+          <div class="value">R$ 226.499,34</div>
+        </div>
+      </div>
+      <div class="card kpi">
+        <div class="icon" aria-hidden="true">🏦</div>
+        <div>
+          <div class="label">Lucro Total</div>
+          <div class="value">R$ 147.439,43</div>
+        </div>
+      </div>
+      <div class="card kpi">
+        <div class="icon" aria-hidden="true">📊</div>
+        <div>
+          <div class="label">% Faturamento de Campanhas</div>
+          <div class="value">7,07%</div>
+        </div>
+      </div>
+      <div class="card kpi">
+        <div class="icon" aria-hidden="true">🧾</div>
+        <div>
+          <div class="label">Lucro das Campanhas</div>
+          <div class="value">R$ 5.937,82</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARTS ROW -->
+    <section class="grid cols-2" style="margin-top:16px">
+      <div class="card">
+        <div class="section-title">% do Faturamento por Campanha</div>
+        <canvas id="pieFat"></canvas>
+        <p class="note muted">Observação: campanhas representam <strong>7,07%</strong> do faturamento (Vendas Gerais: 92,93%).</p>
+      </div>
+      <div class="card">
+        <div class="section-title">Lucro por Campanha (R$)</div>
+        <canvas id="barLucro"></canvas>
+        <p class="note muted">Genéricos lidera a geração de lucro dentre as campanhas promocionais.</p>
+      </div>
+    </section>
+
+    <!-- HERO CAMPANHA DE GENÉRICOS -->
+    <section class="card hero-card" style="margin-top:16px">
+      <span class="chip">Campanha Campeã — Genéricos</span>
+      <div class="hero-grid" style="margin-top:12px">
+        <div class="hero-stat">
+          <div class="label" style="color:#d8d6ff">Faturamento</div>
+          <div class="v">R$ 10.357,50 <span style="opacity:.9;font-weight:700;font-size:14px">(4,57%)</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="label" style="color:#d8d6ff">Lucro</div>
+          <div class="v">R$ 4.860,23</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label" style="color:#d8d6ff">Unidades vendidas</div>
+          <div class="v">2.235</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label" style="color:#d8d6ff">Ticket Médio</div>
+          <div class="v">R$ 19,62</div>
+        </div>
+      </div>
+      <div class="badge" style="margin-top:12px;color:#eafff5">Desconto médio <strong style="margin-left:8px">78,98%</strong></div>
+      <p style="margin-top:10px;opacity:.9">⚡ <strong>Atrai clientes</strong> · 💸 <strong>Gera caixa</strong> · 🏷️ <strong>Posiciona como preço baixo</strong></p>
+    </section>
+
+    <!-- PAPEL ESTRATÉGICO -->
+    <section class="card" style="margin-top:16px">
+      <div class="section-title">Papel Estratégico das Campanhas</div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="badge">💊 Genéricos</div>
+          <h4>Volume + conquista de mercado</h4>
+          <p class="muted">Descontos agressivos para gerar fluxo e competitividade.</p>
+        </div>
+        <div class="pillar">
+          <div class="badge">🍼 Semana da Criança</div>
+          <h4>Foco em fraldas e leites</h4>
+          <p class="muted">Ticket médio alto por compra combinada de itens infantis.</p>
+        </div>
+        <div class="pillar">
+          <div class="badge">🎗️ Outubro Rosa</div>
+          <h4>Imagem social e marca</h4>
+          <p class="muted">Fortalece reputação e relacionamento com a comunidade.</p>
+        </div>
+        <div class="pillar">
+          <div class="badge">📅 Operação Fecha Mês</div>
+          <h4>Metas e giro de estoque</h4>
+          <p class="muted">Tática de fim de mês para impulsionar metas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKET MÉDIO COMPARATIVO -->
+    <section class="grid cols-2" style="margin-top:16px">
+      <div class="card">
+        <div class="section-title">Ticket Médio — Geral x Campanhas</div>
+        <div class="grid cols-3">
+          <div class="kpi"><div class="icon">🧍</div><div><div class="label">Geral</div><div class="value">R$ 35,83</div></div></div>
+          <div class="kpi"><div class="icon">💊</div><div><div class="label">Genéricos</div><div class="value">R$ 19,62</div></div></div>
+          <div class="kpi"><div class="icon">🛒</div><div><div class="label">Semana da Criança</div><div class="value">R$ 44,04</div></div></div>
+        </div>
+        <canvas id="barTicket" style="margin-top:14px"></canvas>
+        <div class="grid" style="margin-top:10px">
+          <div class="badge" style="background:#e9fff2;color:#0f8a53">Alto ticket — compras combinadas</div>
+          <div class="badge" style="background:#efe9ff;color:#4327b8">Baixo ticket — volume e desconto</div>
+        </div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#2a1f63,#1b0e5e);color:#fff">
+        <div style="font-weight:900;font-size:22px;margin-bottom:10px">Conclusão — Por que as Campanhas Importam</div>
+        <ul style="margin:0 0 10px 18px;line-height:1.7">
+          <li>Atrair e fidelizar clientes com preços imbatíveis</li>
+          <li>Girar estoque e gerar caixa rapidamente</li>
+          <li>Reforçar posicionamento e marca social</li>
+        </ul>
+        <div style="background:rgba(255,255,255,.08);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.15)">
+          <strong>“Campanhas representam apenas 7% do faturamento, mas aceleram crescimento e fortalecem marca.”</strong>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="note">© Farmapio · Outubro/2025</span>
+      <span class="note">Design: verde + roxo · estilo <em>neumorphism</em></span>
+    </footer>
+  </div>
+
+<script>
+// === DATA ===
+const percentuais = {
+  genericos: 4.57,
+  semanaCrianca: 1.87,
+  outubroRosa: 0.26,
+  fechaMes: 0.37,
+};
+const vendasGerais = 100 - (percentuais.genericos + percentuais.semanaCrianca + percentuais.outubroRosa + percentuais.fechaMes); // 92.93
+
+// Pie: % faturamento por campanha
+new Chart(document.getElementById('pieFat'), {
+  type: 'pie',
+  data: {
+    labels: ['Vendas Gerais', 'Genéricos', 'Semana da Criança', 'Outubro Rosa', 'Fecha Mês'],
+    datasets: [{
+      data: [vendasGerais, percentuais.genericos, percentuais.semanaCrianca, percentuais.outubroRosa, percentuais.fechaMes],
+      backgroundColor: ['#2bd37b','#5b35ea','#6f52ff','#b69cff','#1fc7c1'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    plugins:{legend:{position:'bottom',labels:{color:'#1d1b2e',boxWidth:12}}},
+  }
+});
+
+// Bar: Lucro por campanha
+new Chart(document.getElementById('barLucro'), {
+  type: 'bar',
+  data: {
+    labels: ['Genéricos','Semana da Criança','Outubro Rosa','Fecha Mês'],
+    datasets: [{
+      label: 'Lucro (R$)',
+      data: [4860.23, 766.69, 170.88, 140.02],
+      backgroundColor: '#5b35ea',
+      borderRadius: 10,
+    }]
+  },
+  options: {
+    scales: { x: { ticks:{color:'#1d1b2e'} }, y: { ticks:{color:'#6b6b80'} } },
+    plugins:{legend:{display:false}}
+  }
+});
+
+// Bar horizontal: Ticket Médio
+new Chart(document.getElementById('barTicket'), {
+  type: 'bar',
+  data: {
+    labels: ['Geral','Genéricos','Semana da Criança'],
+    datasets: [{
+      label: 'Ticket Médio (R$)',
+      data: [35.83, 19.62, 44.04],
+      backgroundColor: ['#2bd37b','#5b35ea','#1fc7c1'],
+      borderRadius: 10,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    scales: { x: { ticks:{color:'#6b6b80'} }, y: { ticks:{color:'#1d1b2e'} } },
+    plugins:{legend:{display:false}}
+  }
+});
+</script>
+</body>
+</html>
